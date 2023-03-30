@@ -1,3 +1,22 @@
 #:kivy
 
+Screen:
+
+    MDCard:
+        size_hint: None, None
+        size: 300, 300
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        
+    MDLabel:
+        id: welcome_label
+        text: 'Welcome to Safe Sailing!'
+        font_size: '40'
+        halign: 'center'
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding_y: = 15
 
