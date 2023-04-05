@@ -5,7 +5,6 @@ class LoginClass(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "BlueGray"
-        return Builder.load_file('login.kv')
-    
-#LoginClass().run()
+        return Builder.load_file('Features/Login/login.kv')
+
 

@@ -8,9 +8,7 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 
 #import features
-
 from Features.Login.login import LoginClass
-
 
 class MyApp(App):
 
