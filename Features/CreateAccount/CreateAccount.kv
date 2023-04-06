@@ -1,5 +1,5 @@
 MDScreen:
-    name: "login"
+    name: "createaccount"
     MDFloatLayout: 
         md_bg_color: 1, 1, 1, 1
         MDIconButton:
@@ -12,20 +12,93 @@ MDScreen:
                 root.manager.transition.direction = "right"
                 root.manager.current = "main" 
         MDLabel:  
-            text: "W e l c o m e !"
+            text: "H i !"
             font_name: "BPoppins"
             font_size: "26sp"
             pos_hint: {"center_x": .6, "center_y": .85}
             color:  rgba(0, 0, 59, 255)
         MDLabel:  
-            text: "Sign in to continue"
+            text: "Create a new account"
             font_name: "MPoppins"
             font_size: "18sp"
             pos_hint: {"center_x": .6, "center_y": .79}
             color:  rgba(135, 133, 193, 255)
         MDFloatLayout:
             size_hint: 0.7, 0.07
-            pos_hint: {"center_x": .5, "center_y": .63} 
+            pos_hint: {"center_x": .5, "center_y": .69} 
+            TextInput:
+                hint_text: "First Name"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .61} 
+            TextInput:
+                hint_text: "Last Name"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .53} 
+            TextInput:
+                hint_text: "Date of Birth"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .45} 
+            TextInput:
+                hint_text: "Username"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .37} 
             TextInput:
                 hint_text: "Email"
                 font_name: "MPoppins"
@@ -43,7 +116,7 @@ MDScreen:
                 md_bg_color: rgba(178, 178, 178, 255)
         MDFloatLayout:
             size_hint: 0.7, 0.07
-            pos_hint: {"center_x": .5, "center_y": .5} 
+            pos_hint: {"center_x": .5, "center_y": .29} 
             TextInput:
                 hint_text: "Password"
                 font_name: "MPoppins"
@@ -60,10 +133,11 @@ MDScreen:
                 pos_hint: {"center_x": .45, "center_y": 0}
                 size_hint_y: .03
                 md_bg_color: rgba(178, 178, 178, 255)
+
         Button: 
-            text: "LOGIN"
+            text: "SIGNUP"
             size_hint: 0.66, 0.065
-            pos_hint: {"center_x": .5, "center_y": .17}
+            pos_hint: {"center_x": .5, "center_y": .15}
             background_color: 0,0,0,0
             font_name: "BPoppins"
             canvas.before:
@@ -73,12 +147,7 @@ MDScreen:
                     size: self.size
                     pos: self.pos
                     radius: [5]
-        MDTextButton:
-            text: "Forgot Password?"
-            pos_hint: {"center_x": .5, "center_y": .12}
-            color: rgba(68, 78, 132, 255)
-            font_size: "12sp"
-            font_name: "BPoppins"
+        
         MDLabel:
             text: "or"
             color: rgba(52, 0, 231, 255)
@@ -95,20 +164,18 @@ MDScreen:
             size_hint: 0.3, 0.002
             pos_hint:  {"center_x": .3, "center_y": .0818}
         MDLabel:
-            text: "Don't have an account?"
+            text: "Already have an account?"
             font_size: "11sp"
             font_name: "BPoppins"
             pos_hint: {"center_x": .68, "center_y": .04}
             color: rgba(135, 133, 193, 255)
         MDTextButton:
-            text: "Sign up"
+            text: "Sign in"
             font_size: "11sp"
             font_name: "BPoppins"
-            pos_hint: {"center_x": .75, "center_y": .04}
+            pos_hint: {"center_x": .79, "center_y": .04}
             color: rgba(52, 0, 231, 255)
             on_release:
                 root.manager.transition.direction = "left"
-                root.manager.current = "createaccount"
-
-
-
+                root.manager.current = "login"
+ 
