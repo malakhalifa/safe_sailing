@@ -8,8 +8,6 @@ Window.size = (310, 580)
 
 class LoginClass(MDApp):
     def build(self):
-        # self.theme_cls.theme_style = "Dark"
-        # self.theme_cls.primary_palette = "BlueGray"
         screen_manager = ScreenManager() 
         screen_manager.add_widget(Builder.load_file('Features/MainPage/main.kv'))
         screen_manager.add_widget(Builder.load_file('Features/Login/login.kv'))
