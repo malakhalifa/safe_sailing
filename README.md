@@ -5,7 +5,9 @@ Currently based in New York City
 
 # DEV:
 
-Run: python3 main.py
+-Create the virtual environment: python -m virtualenv kivy_venv
+-Activate the virtual environment on mac: source kivy_venv/bin/activate 
+-Run: python3 main.py
 
 Only branch and merge onto develop branch using the following method:
 
