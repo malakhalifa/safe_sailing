@@ -2,12 +2,7 @@ import kivy
 kivy.require('2.1.0') # replace with your current kivy version !
 
 from kivy.app import App
-from kivy.uix.label import Label
-
-from kivy.lang import Builder
-from kivymd.app import MDApp
-
-#import features
+from kivy.core.text import LabelBase
 from Features.Login.login import LoginClass
 
 class MyApp(App):
@@ -17,4 +12,7 @@ class MyApp(App):
         return LoginClass().build()
     
 if __name__ == '__main__':
+    LabelBase.register(name = 'MPoppins', fn_regular='Features/Login/FontPoppins/Poppins-Medium.ttf')
+    LabelBase.register(name = 'BPoppins', fn_regular='Features/Login/FontPoppins/Poppins-SemiBold.ttf')
+
     MyApp().run()
