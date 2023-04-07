@@ -66,6 +66,10 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .17}
             background_color: 0,0,0,0
             font_name: "BPoppins"
+            on_release: 
+                root.manager.transition.direction = "left"
+                # root.manager.current = "displaymap" 
+                root.manager.current = "ratecomment" 
             canvas.before:
                 Color:
                     rgb: rgba(52, 0, 231, 255)

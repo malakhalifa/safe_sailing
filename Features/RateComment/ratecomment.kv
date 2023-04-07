@@ -1,0 +1,92 @@
+
+MDScreen:
+    name: "ratecomment"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "main" 
+        Image:
+            source: "LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .30, "center_y": .94}
+        MDLabel:
+            text: "R a t e   U s !"
+            pos_hint: {"center_x": 0.6, "center_y": 0.75}
+            font_name: "MPoppinsBold"
+            font_size: "18sp"
+        MDLabel:
+            text: "How would you rate the safetiness\nof your route?"
+            pos_hint: {"center_x": 0.6, "center_y": 0.68}
+            font_name: "MPoppins"
+            font_size: "12sp"
+        MDIconButton:
+            id: star1
+            icon: "emoticon-angry"
+            pos_hint: {"center_x": 0.2, "center_y": 0.55}
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: app.select1()
+        MDIconButton:
+            id: star2
+            icon: "emoticon-confused"
+            pos_hint: {"center_x": 0.35, "center_y": 0.55}
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: app.select2()
+        MDIconButton:
+            id: star3
+            icon: "emoticon-happy"
+            pos_hint: {"center_x": 0.5, "center_y": 0.55}
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: app.select3()
+        MDIconButton:
+            id: star4
+            icon: "emoticon-excited"
+            pos_hint: {"center_x": 0.65, "center_y": 0.55}
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: app.select4()
+        MDIconButton:
+            id: star5
+            icon: "emoticon-cool"
+            pos_hint: {"center_x": 0.8, "center_y": 0.55}
+            user_font_size: "40sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: app.select5()
+        MDLabel:
+            id: text
+            text: ""
+            pos_hint: {"center_y": 0.45}
+            halign: "center"
+            font_name: "MPoppins"
+            font_size: "12sp"
+            theme_text_color: "Custom"
+            text_color: 1, 140/255, 0, 1
+        MDRaisedButton:
+            text: "POST"
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            size_hint_x: 0.85
+            md_bg_color: rgba(52, 0, 231, 255)
+        
+
+
+
+                
