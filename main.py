@@ -26,8 +26,8 @@ class MyApp(MDApp):
 # Can't figure out how to implement functionality in main     
     
 if __name__ == '__main__':
-    LabelBase.register(name = 'MPoppins', fn_regular='Features/Login/FontPoppins/Poppins-Medium.ttf')
-    LabelBase.register(name = 'MPoppinsBold', fn_regular='Features/Login/FontPoppins/Poppins-SemiBold.ttf')
-    LabelBase.register(name = 'BPoppins', fn_regular='Features/Login/FontPoppins/Poppins-SemiBold.ttf')
+    LabelBase.register(name = 'MPoppins', fn_regular='Features/FontPoppins/Poppins-Medium.ttf')
+    LabelBase.register(name = 'MPoppinsBold', fn_regular='Features/FontPoppins/Poppins-SemiBold.ttf')
+    LabelBase.register(name = 'BPoppins', fn_regular='Features/FontPoppins/Poppins-SemiBold.ttf')
 
     MyApp().run()
