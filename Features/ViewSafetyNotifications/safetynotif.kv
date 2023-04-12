@@ -1,0 +1,71 @@
+<FirstWindow>:
+    name: "clickbelowsafetynotif"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .30, "center_y": .94}
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/asset/policeofficer.png"
+            halign: "center"
+            size_hint: 0.6, 0.6
+            pos_hint: {"center_x": .60, "center_y": .65}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .5, "center_y": .45}
+            text: 'Click below to see the list of safety notifications'
+        MDFloatingActionButton:
+            icon: 'police-badge'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            on_release: 
+                app.change_screen('safetynotif')
+                app.add_datatable()
+
+<SecondWindow>:
+    name: "safetynotif"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "clickbelowsafetynotif" 
+        MDLabel:
+            text: "Safety Alerts"
+            pos_hint: {"center_x": 0.6, "center_y": 0.87}
+            font_name: "MPoppinsBold"
+            font_size: "18sp"
+            color: rgba(17, 148, 246, 255)
+        MDLabel:
+            text: "Here are the most recent safety \nnotifications:"
+            pos_hint: {"center_x": 0.6, "center_y": 0.80}
+            font_name: "MPoppins"
+            font_size: "12sp"
+            color: rgba(26, 24, 58, 255)
+            #color: rgba(34, 34, 134, 255)
+        AnchorLayout:
+            id: data_layout
+        MDLabel:
+            text: "Danger Index (DI): \n"
+            pos_hint: {"center_x": 0.6, "center_y": 0.20}
+            font_name: "MPoppinsBold"
+            font_size: "12sp"
+            color: rgba(26, 24, 58, 255)
+            #color: rgba(34, 34, 134, 255)
+        MDLabel:
+            text: "- 0 is the lowest number, suggesting there \nis little to no danger \n- 10 is the highest number, suggesting a \nhighly threatning situation"
+            pos_hint: {"center_x": 0.6, "center_y": 0.14}
+            font_name: "MPoppins"
+            font_size: "12sp"
+            color: rgba(26, 24, 58, 255)
+            #color: rgba(34, 34, 134, 255)
+WindowManager:
+    FirstWindow:
+
+    SecondWindow:
+        id: data_scr
