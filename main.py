@@ -18,7 +18,7 @@ class MyApp(MDApp):
         screen_manager.add_widget(Builder.load_file('Features/MainPage/main.kv'))
         screen_manager.add_widget(Builder.load_file('Features/Login/login.kv'))
         screen_manager.add_widget(Builder.load_file('Features/CreateAccount/CreateAccount.kv'))
-        screen_manager.add_widget(Builder.load_file('Features/RateComment/ratecomment.kv'))
+        # screen_manager.add_widget(Builder.load_file('Features/RateComment/ratecomment.kv'))
 
         return screen_manager
 
