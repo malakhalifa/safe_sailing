@@ -1,0 +1,281 @@
+#: import demo demo
+<MessageScreen>:
+    name: "msg"
+    MDBoxLayout: 
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        
+        MDTopAppBar: 
+            id: logoToolBar
+            title: "Messages"
+            right_action_items: [['dots-vertical']]
+            left_action_items: [["arrow-left", lambda x: app.change_screen('main')]]
+
+        ScrollView:
+            do_scroll_y: True
+            effect_cls: 'ScrollEffect'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                md_bg_color: app.theme_cls.primary_color
+                
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    md_bg_color: app.theme_cls.bg_normal
+                    radius: [15, 15, 0, 0]
+                    MDList:
+                        id: chatTimeline
+
+
+<ChatScreen>:
+    name: "chat"
+    MDBoxLayout: 
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        MDBoxLayout:
+            size_hint_y: 0.1
+            md_bg_color: app.theme_cls.bg_normal
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": .3} 
+                user_font_size: 30
+                theme_text_color: "Custom"
+                text_color: rgba(26, 24, 58, 255)
+                on_release: 
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "msg" 
+            MDBoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: root.text
+                    size: self.texture_size
+                    pos_hint: {"center_x": 0.15} 
+                    #size_hint: None, None
+                    font_name: "BPoppins"
+                    font_size: 30
+                    color: app.theme_cls.opposite_bg_normal
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: 20
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_x: None
+                        width: self.minimum_width
+                        spacing: 55  # adjust the spacing as needed
+                        MDIcon:
+                            icon: 'circle'
+                            theme_text_color: 'Custom'
+                            color: [0, 1, 0, 1] if root.active == True else [.5, .5, .5, 1] 
+                            font_size: 20
+                            size: 20, 20
+                        Label:
+                            text: 'Online' if root.active == True else 'Offline'
+                            size: self.texture_size
+                            font_size: 20
+                            color: app.theme_cls.opposite_bg_normal               
+
+            MDBoxLayout:
+                size_hint_x: 1
+                MDIconButton:
+                    icon: 'video'
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    size_hint: (0.5, 0.5)
+                    size: 10, 10
+                MDIconButton:
+                    icon: 'phone'
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    size_hint:  (0.4, 0.4)
+                    size: 8, 8
+        ScrollView:
+            MDList:
+                id: msglist
+
+        MDBoxLayout:
+            md_bg_color: .9, .9, .9, .9
+            height: 100
+            size_hint_y: None
+
+            MDIconButton:
+                icon: "emoticon-happy-outline"
+                user_font_size: 16
+                pos_hint: {'center_y':.5}
+                theme_text_color: 'Custom'
+                size: 30, 30
+                padding: 0
+            TextInput:
+                id: textinput
+                font_size: 28
+                cursor_color: .5, .5, .5, 1
+                current_hint_text_color: .5, .5, .5, 1
+                height: 30
+                background_color: 0, 0, 0, 0
+                hint_text: "Type a message"
+                padding: [5, ]
+            MDIconButton:
+                icon: "paperclip"
+                theme_text_color: 'Custom'
+                user_font_size: 16
+            MDIconButton:
+                icon: "microphone-outline"
+                theme_text_color: 'Custom'
+                user_font_size: 16
+                
+            MDIconButton:
+                icon: 'send'
+                user_font_size: 16
+                theme_text_color: 'Custom'
+                text_color: [1, 1, 1, 1]
+                md_bg_color: app.theme_cls.accent_color
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: 45
+                        origin: self.center
+                        canvas.after:
+                            PopMatrix
+
+# Individual chat 
+<ChatListItem>: 
+    md_bg_color: 0, 0, 0, 0
+    elevation: 0
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: 10
+    height: 90
+    on_press: app.create_chat(root.profile)
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: [10, 15, 0, 15]
+        spacing: 2
+        Label:
+            id: chatUsername
+            text: root.username
+            theme_text_color: 'Custom'
+            size: self.texture_size
+            size_hint_y: 0.9
+            size_hint_x: None
+            font_name: "BPoppins"
+            font_size: "30"
+            color: app.theme_cls.opposite_bg_normal
+        MDLabel:
+            id: lastMessage
+            text: root.msg
+            height: self.texture_size[1]
+            theme_text_color: 'Custom'
+            size_hint_y: None
+            font_name: "MPoppins"
+            font_size: "22"
+            color: [.5, .5, .5, 1] if root.isRead != 'new' else app.theme_cls.primary_color
+            shorten: True
+            markup: True
+            shorten_from: 'right'
+    BoxLayout:
+        orientation: 'vertical'
+        width: time.width
+        size_hint_x: None
+        pos_hint: {'center_y': .5}
+        spacing: 10
+        height: 90
+        padding: [0, 15, 0, 15]
+        Label:
+            id: time
+            text: root.timestamp
+            size: self.texture_size
+            size_hint_y: None
+            font_name: "MPoppins"
+            font_size: "20"
+            color: app.theme_cls.opposite_bg_normal
+
+        MDIcon:
+            #: set icons {'read': 'checkbox-multiple-marked-circle','delivered': 'checkbox-multiple-marked-circle-outline' ,'new': 'circle'}
+            id: chatCount
+            theme_text_color: 'Custom'
+            icon: icons[root.isRead] if root.isRead in icons.keys() else ''
+            size_hint: None, None
+            font_size: 20
+            size: 20, 20
+            pos_hint: {"center_x": .5, 'center_y': .5}
+            text_color: app.theme_cls.primary_color
+
+
+# Text Bubble
+<Space@Widget>:
+    id: w
+    width: 7
+    size_hint: None, None
+
+<ChatBubble>:
+    id: bubble
+    orientation: 'vertical'
+    height: 60
+    adaptive_height: True
+    width: root.width
+    padding: [10, 0, 10, 0]
+    
+    MDBoxLayout:
+        height: time_num.height + message_text.height +  10
+        width:  w1.width + w2.width + message_text.width
+        size_hint: None, None
+        pos_hint: {'left': 1} if bubble.sender != 'you' else  {'right': 1}
+        radius: [12, 12, 12, 12]
+        md_bg_color: app.theme_cls.bg_darkest
+
+        Space:
+            id: w1
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            height: w3.height + message_text.height + time.height
+            width: message_text.width + 3
+
+            MDLabel:
+                id: message_text
+                text: root.msg
+                size_hint_y: None
+                color: app.theme_cls.opposite_bg_normal
+                width: time.width if self.texture_size[0] < time.width else self.texture_size[0]
+                height: self.texture_size[1]
+                text_size: bubble.width-30 if bubble.width-30 < self.width else None, None
+                halign: 'left'
+
+            MDBoxLayout:
+                id: time
+                size_hint_y: None
+                height: time_num.height
+                width: time_num.width + receipt.width + 3
+                spacing: 3
+                MDLabel:
+                    id: time_num
+                    text: root.time
+                    size: self.texture_size
+                    halign: 'right'
+                    size_hint_y: None
+                    font_size: 15
+                    color: [0, 0, 0, 1]
+                MDIcon:
+                    id: receipt
+                    #: set iconds {'read': 'check-all', 'waiting': 'clock-time-three-outline','delivered': 'check'}
+                    icon: iconds[bubble.isRead] if bubble.isRead in iconds.keys() else ''
+                    theme_text_color: 'Custom'
+                    size_hint: None, None
+                    font_size: 12
+                    color: time_num.color
+            Space:
+                id: w3
+                height: 5
+        Space:
+            id: w2
+
+
+            
+
+WindowManager:
+    MessageScreen:
+
+    ChatScreen:
