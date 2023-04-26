@@ -59,6 +59,16 @@
             on_release: 
                 root.manager.transition.direction = "right"
                 root.manager.current = "clickbelowweathernotif" 
+
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "viewsafetynotif" 
        
         MDLabel:
             id: location
