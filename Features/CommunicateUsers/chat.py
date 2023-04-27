@@ -57,10 +57,11 @@ class MyChat(MDApp):
         # back button does not work in main_chat.kv
         Builder.load_file("/Users/Malakhalifa/senior_proj/safe_sailing/Features/CommunicateUsers/main_chat.kv")
         
-        self.sm = ScreenManager()
-        screens = [MessageScreen(), ChatScreen()]
+        sm = ScreenManager()
+        self.sm = sm
+        screens = [MessageScreen(name="allmessages"), ChatScreen(name='chat')]
         for screen in screens:
-            self.sm.add_widget(screen)
+            sm.add_widget(screen)
 
         self.chat_list_builder()
         return self.sm
