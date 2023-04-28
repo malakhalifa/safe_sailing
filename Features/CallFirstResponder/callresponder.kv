@@ -1,0 +1,76 @@
+<CallWindow>:
+    name: "callfirstresponders"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "chat" 
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "ratecomment" 
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/asset/police-car.png"
+            halign: "left"
+            size_hint: 0.3, 0.3
+            pos_hint: {"center_x": .20, "center_y": .62}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .2, "center_y": .49}
+            text: 'Click below to \n connect to \n the police'
+        MDFloatingActionButton:
+            icon: 'account-tie-hat'
+            pos_hint: {'center_x': 0.2, 'center_y': 0.1}
+            on_release: 
+                app.change_screen('safetynotif')
+                app.add_datatable()
+        
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/asset/ambulance.png"
+            halign: "center"
+            size_hint: 0.35, 0.35
+            pos_hint: {"center_x": .50, "center_y": .35}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .5, "center_y": .23}
+            text: 'Click below to call \n an ambulance and \n connect to EMTs'
+        MDFloatingActionButton:
+            icon: 'hospital-box'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            on_release: 
+                app.change_screen('safetynotif')
+                app.add_datatable()
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/asset/firefighter.png"
+            halign: "right"
+            size_hint: 0.3, 0.3
+            pos_hint: {"center_x": .80, "center_y": .70}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .8, "center_y": .57}
+            text: 'Click below to \n connect you to \n firefighters'
+        MDFloatingActionButton:
+            icon: 'fire'
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            on_release: 
+                app.change_screen('safetynotif')
+                app.add_datatable()
+
+WindowManager:
+    CallWindow:
