@@ -1,6 +1,53 @@
-#:kivy
-#:include kv/homescreen.kv
+<GpsBlinker>:
+    default_blink_size: 25
+    blink_size: 10
+    source: 'kivymd/images/transparent.png'
+    outer_opacity: 1
+ 
+    canvas.before:
+        # Outer circle
+        Color:
+            rgba: app.theme_cls.primary_color[:3] + [root.outer_opacity]
+ 
+        RoundedRectangle:
+            radius: [root.blink_size/2.0, ]
+            size: [root.blink_size, root.blink_size]
+            pos: [root.pos[0] + root.size[0]/2.0 - root.blink_size/2.0, root.pos[1] + root.size[1]/2.0 - root.blink_size/2.0]
+ 
+        # Inner Circle
+        Color:
+            rgb: 1,1,1
+        RoundedRectangle:
+            radius: [root.default_blink_size/2.0, ]
+            size: [root.default_blink_size, root.default_blink_size]
+            pos: [root.pos[0] + root.size[0]/2.0 - root.default_blink_size/2.0, root.pos[1] + root.size[1]/2.0 - root.default_blink_size/2.0]
+ 
+<HomeMapView>:
+    lat: 40.694011
+    lon: -73.986707
+    zoom: 16
+    double_tap_zoom: True
+    on_zoom:
+        self.zoom = 12 if self.zoom < 12 else self.zoom # set minimum zoom = 12
+    GpsBlinker:
+        lat: root.lat
+        lon: root.lon
+        id: blinker
 
+ 
+<HomeScreen>:
+    FloatLayout:
+        MDToolbar:
+            title: "Safely take me to..."
+            right_action_items: [['magnify', lambda x: app.search_menu.open()]]
+            md_bg_color: app.theme_cls.primary_light
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 1, .1
+        HomeMapView:
+            pos_hint: {"top": .900, "left": 1}
+            size_hint: 1, 1
+            id: mapview
+            
 Screen:
     NavigationLayout :
         ScreenManager :
