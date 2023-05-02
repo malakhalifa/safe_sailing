@@ -24,6 +24,8 @@ import certifi
 from kivymd.uix.snackbar import Snackbar
 from kivy.metrics import dp
 
+import config
+
 import requests
 import re
 
@@ -247,7 +249,7 @@ class SearchPopupMenu(MDInputDialog):
         # url = "https://geocoder.ls.hereapi.com/6.2/geocode.json?searchtext=%s&apiKey=%s"%(address, api_key)
         # UrlRequest(url, on_success=self.success, on_failure=self.failure, on_error=self.error, ca_file=certifi.where())
         #certifi directs our apps to ssl certificate
-        geolocator = GoogleV3("AIzaSyC5ukMZR7vek-sPE1pZlIAzM3c5QBxARRw")
+        geolocator = GoogleV3(config.google_api_key)
         location = geolocator.geocode(address)
         # print(location.latitude, location.longitude)
         log_lat = [location.latitude,location.longitude]
