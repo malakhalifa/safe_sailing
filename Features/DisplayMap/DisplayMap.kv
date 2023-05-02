@@ -33,6 +33,7 @@
         lat: root.lat
         lon: root.lon
         id: blinker
+    
 
  
 <HomeScreen>:
@@ -47,6 +48,23 @@
             pos_hint: {"top": .900, "left": 1}
             size_hint: 1, 1
             id: mapview
+
+    MapView:
+		id: main_map
+		size: root.width, root.height
+        zoom: 16
+        lat: 40.694011
+		lon: -73.986707
+        # MapMarkerPopup:
+        #     id: main_map_me
+        #     lat: 40.694011
+        #     lon: -73.986707
+        GpsBlinker:
+            lat: 40.694011
+            lon: -73.986707
+            id: blinker
+                
+
             
 Screen:
     NavigationLayout :
@@ -58,3 +76,4 @@ Screen:
                 name: "home_screen"
                 id: home_screen
 
+			
