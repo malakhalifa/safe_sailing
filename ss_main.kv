@@ -1,0 +1,1289 @@
+#: import demo demo
+#:import MDFloatLayout kivymd.uix.floatlayout.MDFloatLayout
+#:import AnchorLayout kivy.uix.anchorlayout.AnchorLayout
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+
+<FirstWindow>:
+    name: "main"
+    id: "main"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        Image:
+            source: "/Users/Malakhalifa/Downloads/SS/DisplayMap/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .30, "center_y": .94}
+        Image:
+            source: "/Users/Malakhalifa/Downloads/SS/asset/traveller.png"
+            size_hint: 0.6, 0.6
+            pos_hint: {"center_x": .5, "center_y": .65}
+        MDLabel:
+            text: "H e l l o !"
+            font_name: "BPoppins"
+            font_size: "23sp"
+            pos_hint: {"center_y": 0.45}
+            halign: "center"
+            color: rgba(34, 34, 34, 255)
+        MDLabel:
+            text: "Safeguard your journey with Safe Sailing"
+            font_name: "MPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.35}
+            halign: "center"
+            color: rgba(127, 127, 127, 255)
+        Button:
+            text: "LOGIN"
+            size_hint: 0.66, 0.065
+            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+            background_color: 0,0,0,0
+            font_name: "BPoppins"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        Button:
+            text: "SIGN UP"
+            size_hint: 0.66, 0.065
+            pos_hint: {"center_x": 0.5, "center_y": 0.15}
+            background_color: 0,0,0,0
+            font_name: "BPoppins"
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "createaccount"
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                Line:
+                    width: 1.2
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+
+<LoginWindow>:
+    name: "login"
+    id: "login"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "main" 
+        MDLabel:  
+            text: "W e l c o m e !"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color:  rgba(0, 0, 59, 255)
+        MDLabel:  
+            text: "Sign in to continue"
+            font_name: "MPoppins"
+            font_size: "18sp"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color:  rgba(135, 133, 193, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .63} 
+            TextInput:
+                id: email
+                hint_text: "Email"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .5} 
+            TextInput:
+                id: password
+                hint_text: "Password"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDLabel:
+            id: error_message
+            text: ""
+            pos_hint: {"center_y": 0.4}
+            halign: "center"
+            font_name: "MPoppins"
+            font_size: "12sp"
+            theme_text_color: "Custom"
+            text_color: 1, 140/255, 0, 1
+        Button: 
+            text: "LOGIN"
+            size_hint: 0.66, 0.065
+            pos_hint: {"center_x": .5, "center_y": .17}
+            background_color: 0,0,0,0
+            font_name: "BPoppins"
+            on_release: 
+                app.login(email.text, password.text)
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        MDTextButton:
+            text: "Forgot Password?"
+            pos_hint: {"center_x": .5, "center_y": .12}
+            color: rgba(68, 78, 132, 255)
+            font_size: "12sp"
+            font_name: "BPoppins"
+        MDLabel:
+            text: "or"
+            color: rgba(52, 0, 231, 255)
+            pos_hint: {"center_y": .08}
+            font_size: "13sp"
+            font_name: "BPoppins"
+            halign: "center"
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: 0.3, 0.002
+            pos_hint:  {"center_x": .7, "center_y": .0818}
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: 0.3, 0.002
+            pos_hint:  {"center_x": .3, "center_y": .0818}
+        MDLabel:
+            text: "Don't have an account?"
+            font_size: "11sp"
+            font_name: "BPoppins"
+            pos_hint: {"center_x": .68, "center_y": .04}
+            color: rgba(135, 133, 193, 255)
+        MDTextButton:
+            text: "Sign up"
+            font_size: "11sp"
+            font_name: "BPoppins"
+            pos_hint: {"center_x": .75, "center_y": .04}
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "createaccount"
+
+<CreateAccWindow>:
+    name: "createaccount"
+    id: "createaccount"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "main" 
+        MDLabel:  
+            text: "H i !"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color:  rgba(0, 0, 59, 255)
+        MDLabel:  
+            text: "Create a new account"
+            font_name: "MPoppins"
+            font_size: "18sp"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color:  rgba(135, 133, 193, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .73} 
+            TextInput:
+                id: fname
+                hint_text: "First Name"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .65} 
+            TextInput:
+                id: lname
+                hint_text: "Last Name"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .57} 
+            TextInput:
+                id: dob
+                hint_text: "Date of Birth"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .49} 
+            TextInput:
+                id: email
+                hint_text: "Email"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .41} 
+            TextInput:
+                id: password
+                hint_text: "Password"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .33}     
+            TextInput:
+                id: homeadd
+                hint_text: "Home Address"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .5, "center_y": .25}     
+            TextInput:
+                id: workadd
+                hint_text: "Work Address"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        MDLabel:
+            id: createaccount_error
+            text: ""
+            pos_hint: {"center_y": 0.20}
+            halign: "center"
+            font_name: "MPoppins"
+            font_size: "12sp"
+            theme_text_color: "Custom"
+            text_color: 1, 140/255, 0, 1
+
+
+        Button: 
+            text: "SIGNUP"
+            size_hint: 0.66, 0.065
+            pos_hint: {"center_x": .5, "center_y": .15}
+            background_color: 0,0,0,0
+            font_name: "BPoppins"
+            on_release:
+                app.create_account(fname.text, lname.text, dob.text, email.text, password.text, homeadd.text, workadd.text)
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        
+        MDLabel:
+            text: "or"
+            color: rgba(52, 0, 231, 255)
+            pos_hint: {"center_y": .08}
+            font_size: "13sp"
+            font_name: "BPoppins"
+            halign: "center"
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: 0.3, 0.002
+            pos_hint:  {"center_x": .7, "center_y": .0818}
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: 0.3, 0.002
+            pos_hint:  {"center_x": .3, "center_y": .0818}
+        MDLabel:
+            text: "Already have an account?"
+            font_size: "11sp"
+            font_name: "BPoppins"
+            pos_hint: {"center_x": .68, "center_y": .04}
+            color: rgba(135, 133, 193, 255)
+        MDTextButton:
+            text: "Sign in"
+            font_size: "11sp"
+            font_name: "BPoppins"
+            pos_hint: {"center_x": .79, "center_y": .04}
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+
+<GpsBlinker>:
+    default_blink_size: 25
+    blink_size: 10
+    source: 'kivymd/images/transparent.png'
+    outer_opacity: 1
+ 
+    canvas.before:
+        # Outer circle
+        Color:
+            rgba: app.theme_cls.primary_color[:3] + [root.outer_opacity]
+ 
+        RoundedRectangle:
+            radius: [root.blink_size/2.0, ]
+            size: [root.blink_size, root.blink_size]
+            pos: [root.pos[0] + root.size[0]/2.0 - root.blink_size/2.0, root.pos[1] + root.size[1]/2.0 - root.blink_size/2.0]
+ 
+        # Inner Circle
+        Color:
+            rgb: 1,1,1
+        RoundedRectangle:
+            radius: [root.default_blink_size/2.0, ]
+            size: [root.default_blink_size, root.default_blink_size]
+            pos: [root.pos[0] + root.size[0]/2.0 - root.default_blink_size/2.0, root.pos[1] + root.size[1]/2.0 - root.default_blink_size/2.0]
+ 
+<HomeMapView>:
+    lat: 40.6931479
+    lon: -73.9874499
+    zoom: 16
+    double_tap_zoom: True
+    GpsBlinker:
+        id: blinker
+
+            
+<DisplayMapWindow>:
+    id: "displaymap"
+    name: "displaymap"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "clickbelowsafetynotif" 
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                app.chat_list_builder()
+                root.manager.transition.direction = "left"
+                root.manager.current = "msg" 
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+        
+        MDToolbar:
+            title: "Safely take me to..."
+            right_action_items: [['magnify', lambda x: app.search_menu.open()]]
+            md_bg_color: app.theme_cls.primary_light
+            pos_hint: {"top": 0.890, "left": 1}
+            size_hint: 1, .1
+        HomeMapView:
+            pos_hint: {"top": .790, "left": 1}
+            size: root.width, root.height
+            id: mapview
+            GpsBlinker:
+                lat: root.lat
+                lon: root.lon
+                id: blinker2
+        
+
+
+<RateCommentWindow>:
+    name: "ratecomment"
+    id: "ratecomment"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "callfirstresponders" 
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                app.chat_list_builder()
+                root.manager.transition.direction = "left"
+                root.manager.current = "main" 
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+
+        MDLabel:
+            text: "R a t e   U s !"
+            pos_hint: {"center_x": 0.6, "center_y": 0.75}
+            font_name: "MPoppinsBold"
+            font_size: "18sp"
+        MDLabel:
+            text: "How would you rate the safetiness\nof your route?"
+            pos_hint: {"center_x": 0.6, "center_y": 0.68}
+            font_name: "MPoppins"
+            font_size: "12sp"
+        MDLabel:
+            text: ""
+            pos_hint: {"center_y": 0.42}
+            halign: "center"
+            font_name: "MPoppins"
+            font_size: "12sp"
+            theme_text_color: "Custom"
+            text_color: 1, 140/255, 0, 1
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": .60} 
+            TextInput:
+                id: route_id
+                hint_text: "What is your trip ID?"
+                font_name: "MPoppins"
+                size_hint_y: 0.99
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: True
+                height: 0.99
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDIconButton:
+            id: star1
+            icon: "emoticon-angry"
+            pos_hint: {"center_x": 0.2, "center_y": 0.5}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: 
+                app.select1()
+                root.selected_rating = '1'
+        MDIconButton:
+            id: star2
+            icon: "emoticon-confused"
+            pos_hint: {"center_x": 0.35, "center_y": 0.5}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: 
+                app.select2()
+                root.selected_rating = '2'
+        MDIconButton:
+            id: star3
+            icon: "emoticon-happy"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: 
+                app.select3()
+                root.selected_rating = '3'
+        MDIconButton:
+            id: star4
+            icon: "emoticon-excited"
+            pos_hint: {"center_x": 0.65, "center_y": 0.5}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: 
+                app.select4()
+                root.selected_rating = '4'
+        MDIconButton:
+            id: star5
+            icon: "emoticon-cool"
+            pos_hint: {"center_x": 0.8, "center_y": 0.5}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(52, 0, 231, 255)
+            opacity: 0.5
+            on_release: 
+                app.select5()
+                root.selected_rating = '5'
+        MDLabel:
+            id: text
+            text: ""
+            pos_hint: {"center_y": 0.42}
+            halign: "center"
+            font_name: "MPoppins"
+            font_size: "12sp"
+            theme_text_color: "Custom"
+            text_color: 1, 140/255, 0, 1
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": .33} 
+            TextInput:
+                id: comment
+                hint_text: "Leave a comment"
+                font_name: "MPoppins"
+                size_hint_y: 0.99
+                pos_hint: {"center_x": .5, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_widthh: "2sp"
+                multiline: True
+                height: 0.99
+        MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        Button:
+            text: "POST"
+            size_hint: 0.85, 0.065
+            pos_hint: {"center_x": 0.5, "center_y": 0.23}
+            background_color: 0,0,0,0
+            on_release: app.post_rate_comment(route_id.text, root.selected_rating, comment.text)  
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]  
+
+
+<ViewSafetyNotifWindow>:
+    name: "clickbelowsafetynotif"
+    id: "clickbelowsafetynotif"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "clickbelowweathernotif" 
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/asset/policeofficer.png"
+            halign: "center"
+            size_hint: 0.6, 0.6
+            pos_hint: {"center_x": .60, "center_y": .65}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .5, "center_y": .45}
+            text: 'Click below to see the list of safety notifications'
+        MDFloatingActionButton:
+            icon: 'police-badge'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            elevation_normal: dp(0)
+            on_release: 
+                app.add_datatable()
+                
+
+<SafetyNotifWindow>:
+    name: "safetynotif"
+    id: "safetynotif"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "clickbelowsafetynotif" 
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "displaymap"
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+        MDLabel:
+            text: "Safety Alerts"
+            pos_hint: {"center_x": 0.6, "center_y": 0.87}
+            font_name: "MPoppinsBold"
+            font_size: "18sp"
+            color: rgba(17, 148, 246, 255)
+        MDLabel:
+            text: "Here are the most recent safety \nnotifications:"
+            pos_hint: {"center_x": 0.6, "center_y": 0.80}
+            font_name: "MPoppins"
+            font_size: "12sp"
+            color: rgba(26, 24, 58, 255)
+        AnchorLayout:
+            id: data_layout
+        MDLabel:
+            text: "Danger Index (DI): \n"
+            pos_hint: {"center_x": 0.6, "center_y": 0.20}
+            font_name: "MPoppinsBold"
+            font_size: "12sp"
+            color: rgba(26, 24, 58, 255)
+        MDLabel:
+            text: "- 0 is the lowest number, suggesting there \nis little to no danger \n- 10 is the highest number, suggesting a \nhighly threatning situation"
+            pos_hint: {"center_x": 0.6, "center_y": 0.14}
+            font_name: "MPoppins"
+            font_size: "12sp"
+            color: rgba(26, 24, 58, 255)
+            #color: rgba(34, 34, 134, 255)
+
+<ViewWeatherNotifWindow>:
+    id: clickbelowweathernotif
+    name: "clickbelowweathernotif"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "login" 
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "clickbelowsafetynotif" 
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+        Image:
+            source: "/Users/Malakhalifa/Downloads/SS/asset/weather.png"
+            halign: "center"
+            size_hint: 0.6, 0.6
+            pos_hint: {"center_x": .60, "center_y": .65}
+        MDIconButton:
+            icon: 'map-marker'
+            pos_hint: {'center_x': 0.1, 'center_y': 0.45}
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": .47, "center_y": .45} 
+            TextInput:
+                id: location_input
+                hint_text: "Enter city (e.g. New York City)"
+                font_name: "MPoppins"
+                size_hint_y: 0.75
+                pos_hint: {"center_x": .5, "center_y": .4}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "12sp"
+                cursor_widthh: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        MDLabel:
+            pos_hint: {"center_x": .65, "center_y": .35}
+            text: 'Click below to track the weather'
+            font_size: "14sp"
+        MDFloatingActionButton:
+            icon: 'weather-cloudy'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            elevation_normal: dp(0)
+            on_release: 
+                app.change_screen('weathernotif')
+                app.search_weather(location_input.text)
+
+<WeatherNotifWindow>:
+    id: weathernotif
+    name: "weathernotif"
+    MDFloatLayout: 
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "clickbelowweathernotif"
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "clickbelowsafetynotif"  
+        MDLabel:
+            id: location
+            text:
+            pos_hint:  {'center_x': 0.5, 'center_y': 0.85}
+            halign: 'center'
+            font_size: "20sp"
+            font_name: "BPoppins"
+        Image:
+            id: weather_image
+            source: ""
+            size_hint: 0.5, 0.5
+            pos_hint: {"center_x": .5, "center_y": .67}
+        MDLabel:
+            id: temperature
+            text:
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.48}
+            halign: 'center'
+            font_size: "50sp"
+
+        MDLabel:
+            id: weather
+            text:
+            pos_hint:  {'center_x': 0.5, 'center_y': 0.40}
+            halign: 'center'
+            font_size: "20sp"
+            font_name: "MPoppins"
+
+        MDFloatLayout:
+            pos_hint:  {'center_x': 0.25, 'center_y': 0.30}
+            size_hint: 0.22, 0.1
+            Image:
+                source: "/Users/Malakhalifa/Downloads/SS/asset/humidity.png"
+                pos_hint: {"center_x": .1, "center_y": .5}
+                size_hint: 0.7, 0.7
+            MDLabel:
+                id: humidity
+                text: 
+                pos_hint:  {'center_x': 1, 'center_y': 0.6}
+                font_size: "11sp"
+                font_name: "MPoppins"
+            MDLabel:
+                text: "Humidity"
+                pos_hint:  {'center_x': 1, 'center_y': 0.3}
+                font_size: "11sp"
+                font_name: "MPoppins"
+
+        MDFloatLayout:
+            pos_hint:  {'center_x': 0.7, 'center_y': 0.30}
+            size_hint: 0.22, 0.1
+            Image:
+                source: "/Users/Malakhalifa/Downloads/SS/asset/wind.png" 
+                pos_hint: {"center_x": .1, "center_y": .5}
+                size_hint: 0.75, 0.75
+            MDLabel:
+                id: wind_speed
+                text: 
+                pos_hint:  {'center_x': 1.1, 'center_y': 0.6}
+                font_size: "11sp"
+                font_name: "MPoppins"
+            MDLabel:
+                text: "Wind"
+                pos_hint:  {'center_x': 1.1, 'center_y': 0.3}
+                font_size: "11sp"
+                font_name: "MPoppins"
+
+<MessageScreen>:
+    name: "msg"
+    id: "msg"
+    MDBoxLayout: 
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        
+        MDToolbar: 
+            id: logoToolBar
+            title: "Messages"
+            right_action_items: [["arrow-right", lambda x: app.change_screen('callfirstresponders')]]
+            left_action_items: [["arrow-left", lambda x: app.change_screen('displaymap', 'right')]]
+
+        ScrollView:
+            do_scroll_y: True
+            effect_cls: 'ScrollEffect'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                md_bg_color: app.theme_cls.primary_color
+                
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    md_bg_color: app.theme_cls.bg_normal
+                    radius: [15, 15, 0, 0]
+                    MDList:
+                        id: chatTimeline
+
+<ChatScreen>:
+    name: "chat"
+    id: "chat"
+    MDBoxLayout: 
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        MDBoxLayout:
+            size_hint_y: 0.1
+            md_bg_color: app.theme_cls.bg_normal
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": .3} 
+                user_font_size: "30"
+                theme_text_color: "Custom"
+                text_color: rgba(26, 24, 58, 255)
+                on_release: 
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "msg" 
+            MDBoxLayout:
+                orientation: "vertical"
+                Label:
+                    text: root.text
+                    size: self.texture_size
+                    pos_hint: {"center_x": 0.15} 
+                    #size_hint: None, None
+                    font_name: "BPoppins"
+                    font_size: 30
+                    color: app.theme_cls.opposite_bg_normal
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: 20
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_x: None
+                        width: self.minimum_width
+                        spacing: 55  # adjust the spacing as needed
+                        MDIcon:
+                            icon: 'circle'
+                            theme_text_color: 'Custom'
+                            color: [0, 1, 0, 1] if root.active == True else [.5, .5, .5, 1] 
+                            font_size: 20
+                            size: 20, 20
+                        Label:
+                            text: 'Online' if root.active == True else 'Offline'
+                            size: self.texture_size
+                            font_size: 20
+                            color: app.theme_cls.opposite_bg_normal               
+
+            MDBoxLayout:
+                size_hint_x: 1
+                MDIconButton:
+                    icon: 'video'
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    size_hint: (0.5, 0.5)
+                    size: 10, 10
+                MDIconButton:
+                    icon: 'phone'
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    size_hint:  (0.4, 0.4)
+                    size: 8, 8
+        ScrollView:
+            MDList:
+                id: msglist
+
+        MDBoxLayout:
+            md_bg_color: .9, .9, .9, .9
+            height: 100
+            size_hint_y: None
+
+            MDIconButton:
+                icon: "emoticon-happy-outline"
+                user_font_size: "20sp"
+                pos_hint: {'center_x':.5, 'center_y':.5}
+                theme_text_color: 'Custom'
+                size: 30, 30
+                padding: 0
+            TextInput:
+                id: new_message
+                font_size: "16sp"
+                cursor_color: .5, .5, .5, 1
+                current_hint_text_color: .5, .5, .5, 1
+                height: 30
+                background_color: 0, 0, 0, 0
+                hint_text: "Type a message"
+                padding: [2, ]
+            MDIconButton:
+                icon: "microphone-outline"
+                theme_text_color: 'Custom'
+                user_font_size: "20sp"
+            MDIconButton:
+                icon: 'send'
+                user_font_size: "25sp"
+                theme_text_color: 'Custom'
+                text_color: [1, 1, 1, 1]
+                md_bg_color: app.theme_cls.accent_color
+                width: dp(48)
+                height: dp(48)
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: 45
+                        origin: self.center
+                        canvas.after:
+                            PopMatrix
+                on_release: 
+                    app.send_message(new_message.text)
+                
+
+# Individual chat 
+<ChatListItem>: 
+    md_bg_color: 0, 0, 0, 0
+    elevation: 0
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: 10
+    height: 90
+    on_press: app.create_chat(root.profile)
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: [10, 15, 0, 15]
+        spacing: 2
+        Label:
+            id: chatUsername
+            text: root.username
+            theme_text_color: 'Custom'
+            size: self.texture_size
+            size_hint_y: 0.9
+            size_hint_x: None
+            font_name: "BPoppins"
+            font_size: "30"
+            color: app.theme_cls.opposite_bg_normal
+        MDLabel:
+            id: lastMessage
+            text: root.msg
+            height: self.texture_size[1]
+            theme_text_color: 'Custom'
+            size_hint_y: None
+            font_name: "MPoppins"
+            font_size: "22"
+            color: [.5, .5, .5, 1] if root.isRead != 'new' else app.theme_cls.primary_color
+            shorten: True
+            markup: True
+            shorten_from: 'right'
+    BoxLayout:
+        orientation: 'vertical'
+        width: time.width
+        size_hint_x: None
+        pos_hint: {'center_y': .5}
+        spacing: 10
+        height: 90
+        padding: [0, 15, 0, 15]
+        Label:
+            id: time
+            text: root.timestamp
+            size: self.texture_size
+            size_hint_y: None
+            font_name: "MPoppins"
+            font_size: "20"
+            color: app.theme_cls.opposite_bg_normal
+
+        MDIcon:
+            #: set icons {'read': 'checkbox-multiple-marked-circle','delivered': 'checkbox-multiple-marked-circle-outline' ,'new': 'circle'}
+            id: chatCount
+            theme_text_color: 'Custom'
+            icon: icons[root.isRead] if root.isRead in icons.keys() else ''
+            size_hint: None, None
+            font_size: 20
+            size: 20, 20
+            pos_hint: {"center_x": .5, 'center_y': .5}
+            text_color: app.theme_cls.primary_color
+
+
+# Text Bubble
+<Space@Widget>:
+    id: w
+    width: 7
+    size_hint: None, None
+
+<ChatBubble>:
+    id: bubble
+    orientation: 'vertical'
+    height: 60
+    adaptive_height: True
+    width: root.width
+    padding: [dp(10), 0, dp(10), 0]
+    
+    MDBoxLayout:
+        height: time_num.height + message_text.height +  dp(10)
+        width:  w1.width + w2.width + message_text.width
+        size_hint: None, None
+        pos_hint: {'left': 1} if bubble.sender != 'you' else  {'right': 1}
+        radius: [12, 12, 12, 12]
+        md_bg_color: app.theme_cls.bg_darkest
+
+        Space:
+            id: w1
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            height: w3.height + message_text.height + time.height + dp(3)
+            width: message_text.width + 3
+            spacing: dp(3)
+
+            MDLabel:
+                id: message_text
+                text: root.msg
+                size_hint_y: None
+                color: app.theme_cls.opposite_bg_normal
+                width: time.width if self.texture_size[0] < time.width else self.texture_size[0]
+                height: self.texture_size[1]
+                #text_size: bubble.width-30 if bubble.width-30 < self.width else None, None
+                text_size: None, None
+                halign: 'left'
+
+            MDBoxLayout:
+                id: time
+                size_hint_y: None
+                height: time_num.height
+                width: time_num.width + receipt.width #+ dp(1)
+                #spacing: dp(1)
+                MDLabel:
+                    id: time_num
+                    text: root.time
+                    size: self.texture_size
+                    halign: 'left'
+                    size_hint_y: None
+                    font_size: "8sp"
+                    color: [0, 0, 0, 1]
+                MDIcon:
+                    id: receipt
+                    #: set iconds {'read': 'check-all', 'waiting': 'clock-outline','delivered': 'check'}
+                    icon: iconds[bubble.isRead] if bubble.isRead in iconds.keys() else ''
+                    theme_text_color: 'Custom'
+                    size_hint: None, None
+                    font_size: "8sp"
+                    color: time_num.color
+                    halign: 'right'
+                    pos_hint: {"center_x": .5, 'center_y': .5}
+            Space:
+                id: w3
+                height: 5
+        Space:
+            id: w2
+
+<CallWindow>:
+    name: "callfirstresponders"
+    id: "callfirstresponders"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "right"
+                root.manager.current = "msg" 
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {"center_x": .92, "center_y": .95} 
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release: 
+                root.manager.transition.direction = "left"
+                root.manager.current = "ratecomment" 
+        Image:
+            source: "/Users/Malakhalifa/senior_proj/safe_sailing/Features/LogoAssets/logohorizontal.png"
+            size_hint: 0.52, 0.58
+            pos_hint: {"center_x": .50, "center_y": .94}
+
+        Image:
+            source: "/Users/Malakhalifa/Downloads/SS/asset/police-car.png"
+            halign: "left"
+            size_hint: 0.3, 0.3
+            pos_hint: {"center_x": .20, "center_y": .62}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .2, "center_y": .49}
+            text: 'Click below to \n connect to \n the police'
+        MDFloatingActionButton:
+            icon: 'tie'
+            pos_hint: {'center_x': 0.2, 'center_y': 0.1}
+            elevation_normal: dp(0)
+            on_release: 
+                app.change_screen('login')
+        
+        Image:
+            source: "/Users/Malakhalifa/Downloads/SS/asset/ambulance.png"
+            halign: "center"
+            size_hint: 0.35, 0.35
+            pos_hint: {"center_x": .50, "center_y": .35}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .5, "center_y": .23}
+            text: 'Click below to call \n an ambulance and \n connect to EMTs'
+        MDFloatingActionButton:
+            icon: 'hospital-box'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            elevation_normal: dp(0)
+            on_release: 
+                app.change_screen('login')
+        Image:
+            source: "/Users/Malakhalifa/Downloads/SS/asset/firefighter.png"
+            halign: "right"
+            size_hint: 0.3, 0.3
+            pos_hint: {"center_x": .80, "center_y": .70}
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": .8, "center_y": .57}
+            text: 'Click below to \n connect you to \n firefighters'
+        MDFloatingActionButton:
+            icon: 'fire'
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+            elevation_normal: dp(0)
+            on_release: 
+                app.change_screen('login')
+
+WindowManager:
+    FirstWindow:
+
+    LoginWindow:
+    
+    CreateAccWindow:
+
+    DisplayMapWindow:
+
+    RateCommentWindow:
+
+    ViewSafetyNotifWindow:
+
+    SafetyNotifWindow:
+        id: data_scr
+
+    ViewWeatherNotifWindow:
+
+    WeatherNotifWindow:
+
+    MessageScreen:
+
+    ChatScreen:
+
+    CallWindow:
+
+
+
+
+
+
